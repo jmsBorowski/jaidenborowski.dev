@@ -1,7 +1,7 @@
-export default function ProjectsPage() {
+export default function ArtProjectsPage() {
     return (
       <main className="flex flex-col items-center justify-center min-h-[80vh] px-6 py-12 bg-gray-50">
-        <h1 className="text-4xl font-bold mb-6 text-gray-900">Projects</h1>
+        <h1 className="text-4xl font-bold mb-6 text-gray-900">Art Projects</h1>
   
         <p className="text-lg text-gray-700 max-w-xl text-center mb-10">
           Here are a few of the projects I’ve worked on.  
