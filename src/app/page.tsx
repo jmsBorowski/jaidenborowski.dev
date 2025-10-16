@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <section className="h-screen w-full flex flex-col justify-center items-start bg-gradient-to-b from-yelllow-200 to-red-100 text-left pl-[15%]">
       <h1 className="text-5xl font-bold mb-6 text-black">Hi</h1>
-      <h1 className="text-5xl font-bold mb-6 text-black">I'm Jaiden Borowski</h1>
+      <h1 className="text-5xl font-bold mb-6 text-black">Im Jaiden Borowski</h1>
       <p className="text-lg text-gray-600 mb-10">
         UI/UX Developer, Video Game Designer, Artist 
       </p>
