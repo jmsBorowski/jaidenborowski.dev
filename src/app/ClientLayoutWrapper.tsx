@@ -12,7 +12,6 @@ export default function ClientLayoutWrapper({
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  // Track dropdown state
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
 
@@ -31,39 +30,12 @@ export default function ClientLayoutWrapper({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  if (!mounted) {
-    // Minimal SSR shell to avoid mismatch
-    return (
-      <>
-        {!isHome && (
-          <header className="bg-white shadow-sm sticky top-0 z-50">
-            <nav className="container mx-auto flex justify-between items-center px-6 py-4">
-              <Link href="/" className="text-2xl font-bold text-black">
-                Jaiden Borowski
-              </Link>
-            </nav>
-          </header>
-        )}
-        <main
-          className={`flex-grow ${
-            isHome
-              ? "p-0 m-0 w-full max-w-none flex items-center justify-center bg-white"
-              : "container mx-auto px-6 py-10"
-          }`}
-        >
-          {children}
-        </main>
-      </>
-    );
-  }
-
-  // Normal render (client side)
   return (
     <>
       {/* HEADER */}
       {!isHome && (
         <header className="bg-white shadow-sm sticky top-0 z-50">
-          <nav className="container mx-auto flex justify-between items-center px-6 py-4">
+          <nav className="flex justify-between items-center px-6 py-4">
             <Link href="/" className="text-2xl font-bold text-black">
               Jaiden Borowski
             </Link>
@@ -80,7 +52,7 @@ export default function ClientLayoutWrapper({
                 </Link>
               </li>
 
-              {/* ▼ Dropdown Menu (Click only) */}
+              {/* ▼ Dropdown Menu */}
               <li className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setOpen((prev) => !prev)}
@@ -126,10 +98,8 @@ export default function ClientLayoutWrapper({
 
       {/* MAIN */}
       <main
-        className={`flex-grow ${
-          isHome
-            ? "p-0 m-0 w-full max-w-none flex items-center justify-center bg-white"
-            : "container mx-auto px-6 py-10"
+        className={`w-full bg-white min-h-screen ${
+          isHome ? "flex flex-col items-center justify-center" : "px-6 py-10"
         }`}
       >
         {children}
@@ -137,8 +107,8 @@ export default function ClientLayoutWrapper({
 
       {/* FOOTER */}
       {!isHome && (
-        <footer className="bg-gray-100 border-t py-6 mt-10">
-          <div className="container mx-auto text-center space-y-3">
+        <footer className="bg-white border-t py-6 mt-0">
+          <div className="text-center space-y-3">
             <div className="flex justify-center space-x-6">
               <a
                 href="https://www.linkedin.com/in/jaiden-borowski"
