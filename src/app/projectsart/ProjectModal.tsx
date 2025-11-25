@@ -1,9 +1,18 @@
 "use client";
+
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
+interface Project {
+  images: string[];
+  title: string;
+  date: string;
+  details: string;
+  skills: string[];
+}
+
 interface ProjectModalProps {
-  project: any;
+  project: Project;
   onClose: () => void;
 }
 
@@ -20,7 +29,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       return;
     }
 
-    // use a tiny tolerance to avoid 1px issues
     const tolerance = 2;
     const hasScrollbar = el.scrollHeight > el.clientHeight + tolerance;
     if (!hasScrollbar) {
@@ -28,41 +36,30 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       return;
     }
 
-    // show fade only if not scrolled to bottom
     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - tolerance;
     setShowFade(!atBottom);
   };
 
   useEffect(() => {
-    // run once on mount / when project changes
     checkScrollable();
 
-    // listen to scroll on the container
     const el = scrollRef.current;
     if (el) {
       el.addEventListener("scroll", checkScrollable, { passive: true });
     }
-
-    // listen to window resizes
     window.addEventListener("resize", checkScrollable);
 
-    // Observe size changes inside the scroll container (images loading, content updates)
     let ro: ResizeObserver | null = null;
     try {
       if (typeof window !== "undefined" && "ResizeObserver" in window && el) {
-        ro = new ResizeObserver(() => {
-          // schedule microtick to let layout settle
-          requestAnimationFrame(checkScrollable);
-        });
+        ro = new ResizeObserver(() => requestAnimationFrame(checkScrollable));
         ro.observe(el);
-        // also observe children in case layout changes inside (images)
         Array.from(el.children).forEach((child) => ro!.observe(child as Element));
       }
     } catch (e) {
-      // ResizeObserver may not be available in some environments — ignore
+      // ignore
     }
 
-    // also do a delayed check in case images load after mount
     const t = setTimeout(checkScrollable, 300);
 
     return () => {
@@ -75,15 +72,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         } catch {}
       }
     };
-    // re-run when project changes (new content)
   }, [project]);
 
   useEffect(() => {
-    // also re-check when the currentIndex image changes (image size might differ)
-    // small timeout lets the image render/measure
     const t = setTimeout(checkScrollable, 120);
     return () => clearTimeout(t);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex]);
 
   const prevImage = () => {
@@ -96,9 +89,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center p-4 z-50">
-      {/* OUTER WRAPPER — keeps rounded corners */}
       <div className="bg-white rounded-lg max-w-2xl w-full relative text-black overflow-hidden">
-        {/* INNER SCROLLABLE CONTENT */}
         <div ref={scrollRef} className="p-6 overflow-y-auto max-h-[85vh] relative">
           {/* CLOSE BUTTON */}
           <button
@@ -110,7 +101,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* IMAGE CAROUSEL */}
           <div className="w-full flex items-center justify-between mt-10 mb-6">
-            {/* LEFT ARROW */}
             <button
               onClick={prevImage}
               className="text-3xl font-bold text-black hover:scale-110 transition cursor-pointer select-none px-4"
@@ -118,7 +108,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               ←
             </button>
 
-            {/* IMAGE */}
             <div className="flex-grow flex justify-center">
               <Image
                 src={project.images[currentIndex]}
@@ -126,15 +115,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 width={700}
                 height={450}
                 className="max-w-[95%] max-h-[320px] object-cover rounded shadow"
-                // re-check when individual image finishes loading
-                onLoadingComplete={() => {
-                  // tiny delay so layout stabilizes after img decode
-                  setTimeout(checkScrollable, 50);
-                }}
+                onLoadingComplete={() => setTimeout(checkScrollable, 50)}
               />
             </div>
 
-            {/* RIGHT ARROW */}
             <button
               onClick={nextImage}
               className="text-3xl font-bold text-black hover:scale-110 transition cursor-pointer select-none px-4"
@@ -144,20 +128,21 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Title + Text Content */}
-          <h2 className="text-2xl font-bold mb-4">{project.title} ({project.date})</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            {project.title} ({project.date})
+          </h2>
           <p className="mb-4 whitespace-pre-line">{project.details}</p>
 
           {/* Skills */}
           <h3 className="font-semibold mt-4 mb-2">Skills Gained:</h3>
           <ul className="list-disc list-inside space-y-1 mb-4">
-            {project.skills.map((skill: string, index: number) => (
+            {project.skills.map((skill, index) => (
               <li key={index}>{skill}</li>
             ))}
           </ul>
-
         </div>
 
-        {/* FADE, outside the scroll area, shown only when checkScrollable decides */}
+        {/* FADE */}
         {showFade && (
           <div className="pointer-events-none absolute bottom-0 left-0 w-full h-35 bg-gradient-to-t from-white to-transparent" />
         )}
