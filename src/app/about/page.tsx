@@ -9,10 +9,10 @@ export default function AboutPage() {
           <h1 className="text-4xl font-bold mb-4">About Me</h1>
 
           <p className="text-base leading-relaxed mb-6">
-            I'm Jaiden: a creative, a critical thinker, and a problem solver who's still
-            figuring out which exact corner of tech I'll call home. Whether it ends up
+            I&apos;m Jaiden: a creative, a critical thinker, and a problem solver who&apos;s still
+            figuring out which exact corner of tech I&apos;ll call home. Whether it ends up
             being front-end development, software engineering, or even video game design,
-            I've always known I belong somewhere in the space where creativity meets
+            I&apos;ve always known I belong somewhere in the space where creativity meets
             technology. I learn best by diving in, breaking things, fixing them, and
             teaching myself as I go.
           </p>
@@ -25,7 +25,7 @@ export default function AboutPage() {
             single tiny sticker like they were rare Pokémon cards. But somewhere between
             hoarding citrus and playing Geometry Dash knockoffs on Scratch, I got pulled into something deeper.
             I realized it was way more fun to make my own artwork move, react, and
-            come to life than to just play with someone else's work. What started as a quest for free fruit ended up becoming the spark
+            come to life than to just play with someone else&apos;s work. What started as a quest for free fruit ended up becoming the spark
             that made me fall in love with building things.
           </p>
 
@@ -34,34 +34,34 @@ export default function AboutPage() {
             full path. I studied Computer Science and Cognitive Science in college, with
             minors in Art Studio and Computer Game Design. Basically the perfect mix for
             someone who loves when logic, creativity, and human behavior all collide! Since
-            then, I've built all kinds of things: websites, small games, interactive
-            applications. I'm especially drawn to front-end development, UI work, and game
+            then, I&apos;ve built all kinds of things: websites, small games, interactive
+            applications. I&apos;m especially drawn to front-end development, UI work, and game
             design, basically anything that lets me shape how people experience and interact with
             technology in a meaningful way. 
           </p>
 
           <p className="text-base leading-relaxed mb-6">
             What excites me most is creating things people will actually interact with,
-            whether it's something fun, something useful, or something that quietly makes
-            someone's day a little better. I love the challenge of turning ideas into
+            whether it&apos;s something fun, something useful, or something that quietly makes
+            someone&apos;s day a little better. I love the challenge of turning ideas into
             experiences, of designing things that feel intentional and
             meaningful. If someone walks away feeling delighted, understood, or simply
-            able to do something they couldn't before, that's the kind of work that fuels
+            able to do something they couldn&apos;t before, that&apos;s the kind of work that fuels
             me.
           </p>
 
           <p className="italic text-5xl leading-relaxed tracking-wide text-gray-700 mb-6">
-            “I am among those who think that science has great beauty.”  
+            "I am among those who think that science has great beauty."
             <br />
             — Marie Curie
           </p>
 
           <p className="text-base leading-relaxed">
-            That quote resonates with me because I've always seen technology and creativity
+            That quote resonates with me because I&apos;ve always seen technology and creativity
             as two sides of the same coin. To me, code, design, and problem-solving all
             carry their own kind of beauty, in the intention and
-            the way they come together to make something people can truly experience. It's
-            a reminder that building things isn't just technical work; it's meaningful,
+            the way they come together to make something people can truly experience. It&apos;s
+            a reminder that building things isn&apos;t just technical work; it&apos;s meaningful,
             expressive, and often unexpectedly artistic.
           </p>
         </div>

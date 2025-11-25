@@ -14,7 +14,7 @@ export default function ProjectsPage() {
       <h1 className="text-4xl font-bold mb-6 text-gray-900">Programming Projects</h1>
   
       <p className="text-lg text-gray-700 max-w-xl text-center mb-10">
-        Here are a few of the projects I’ve worked on.  
+        Here are a few of the projects I&apos;ve worked on.  
         More coming soon!
       </p>
 
