@@ -51,7 +51,7 @@ export default function AboutPage() {
           </p>
 
           <p className="italic text-5xl leading-relaxed tracking-wide text-gray-700 mb-6">
-            "I am among those who think that science has great beauty."
+            &quot;I am among those who think that science has great beauty.&quot;
             <br />
             — Marie Curie
           </p>
