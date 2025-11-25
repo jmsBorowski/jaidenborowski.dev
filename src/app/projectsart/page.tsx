@@ -1,63 +1,55 @@
-export default function ArtProjectsPage() {
-    return (
-      <main className="flex flex-col items-center justify-center min-h-[80vh] px-6 py-12 bg-white">
-        <h1 className="text-4xl font-bold mb-6 text-gray-900">Art Projects</h1>
+"use client";
+
+import { useState } from "react";
+import { projects, Project } from "./projectsData";
+import ProjectModal from "./ProjectModal";
+import Image from "next/image";
+
+export default function ArtsProjectsPage() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  return (
+    <main className="flex flex-col items-center justify-center min-h-[80vh] px-6 py-12 bg-white">
+      
+      <h1 className="text-4xl font-bold mb-6 text-gray-900">Art Projects</h1>
   
-        <p className="text-lg text-gray-700 max-w-xl text-center mb-10">
-          Here are a few of the projects I’ve worked on.  
-          More coming soon!
-        </p>
-  
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl">
-          {/* Example Project Card 1 */}
-          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Portfolio Website
-            </h2>
-            <p className="text-gray-700 mb-4">
-              A personal website built with Next.js and Tailwind CSS to showcase my work and experience.
-            </p>
-            <a
-              href="#"
-              className="text-blue-600 font-medium hover:underline"
-            >
-              View Project →
-            </a>
+      <p className="text-lg text-gray-700 max-w-xl text-center mb-10">
+        Here are a few of the projects I’ve worked on.  
+        More coming soon!
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 h-full bg-white">
+        {projects.map((project) => (
+          <div
+            key={project.title}
+            className="relative group cursor-pointer rounded-xl overflow-hidden shadow-lg"
+            onClick={() => setSelectedProject(project)}
+          >
+            {/* Placeholder Image */}
+            <Image
+              src={project.images[0]} // first image becomes thumbnail
+              alt={project.title}
+              width={500}
+              height={300}
+              className="h-48 w-full object-cover"
+            />
+
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-black/70 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-4 text-center">
+              <h3 className="text-xl font-bold">{project.title}</h3>
+              <p className="text-sm mt-2">{project.blurb}</p>
+            </div>
           </div>
-  
-          {/* Example Project Card 2 */}
-          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Weather App
-            </h2>
-            <p className="text-gray-700 mb-4">
-              A simple weather dashboard that fetches live data from the OpenWeather API.
-            </p>
-            <a
-              href="#"
-              className="text-blue-600 font-medium hover:underline"
-            >
-              View Project →
-            </a>
-          </div>
-  
-          {/* Example Project Card 3 */}
-          <div className="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              Game Prototype
-            </h2>
-            <p className="text-gray-700 mb-4">
-              A 2D platformer prototype built in Unity, exploring physics and character movement systems.
-            </p>
-            <a
-              href="#"
-              className="text-blue-600 font-medium hover:underline"
-            >
-              View Project →
-            </a>
-          </div>
-        </div>
-      </main>
-    );
-  }
-  
+        ))}
+      </div>
+
+      {/* MODAL */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
+    </main>
+  );
+}

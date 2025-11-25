@@ -34,8 +34,6 @@ export default function ProjectsPage() {
               className="h-48 w-full object-cover"
             />
 
-
-
             {/* Hover Overlay */}
             <div className="absolute inset-0 bg-black/70 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-4 text-center">
               <h3 className="text-xl font-bold">{project.title}</h3>

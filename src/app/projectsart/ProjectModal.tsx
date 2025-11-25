@@ -155,15 +155,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             ))}
           </ul>
 
-          {/* Link */}
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
-          >
-            View Project →
-          </a>
         </div>
 
         {/* FADE, outside the scroll area, shown only when checkScrollable decides */}

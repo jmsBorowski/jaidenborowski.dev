@@ -126,15 +126,19 @@ export default function ClientLayoutWrapper({
               >
                 GitHub
               </a>
+
               <a
-                href="mailto:jmsborowski@gmail.com"
-                className="text-gray-600 hover:text-blue-600 transition"
+                href="https://www.instagram.com/madeby_jaiden/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 transition"
               >
-                Email
+                Instagam
               </a>
+
             </div>
             <p className="text-sm text-gray-500">
-              © {new Date().getFullYear()} Jaiden Borowski. All rights reserved.
+              © 2025 Jaiden Borowski. All rights reserved.
             </p>
           </div>
         </footer>
